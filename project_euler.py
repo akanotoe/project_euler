@@ -64,7 +64,7 @@ def is_prime(number):
         return True
     elif number % 2 == 0:
         return False
-    for n in range(2, int(number**0.5)):
+    for n in range(int(number**0.5), 2, -1):
         if number % n == 0:
             return False
     return True
@@ -89,6 +89,28 @@ def is_palindrome(num):
     if str(num) == str(num)[::-1]:
         return True
     return False
+
+# 5. Smallest multiple
+def get_smallest_multiple():
+    return 2**4 * 3**2 * 5 * 7 * 11 * 13 * 17 * 19
+
+# 6. Sum square difference
+def get_sum_square_difference(num):
+    sum_of_squares = 0
+    for n in range(num+1):
+        sum_of_squares += n**2
+    square_of_sum = num**2 * (num + 1)**2/4
+    return square_of_sum - sum_of_squares
+
+# 7. 10001st prime
+def get_nth_prime(n):
+    number = 2
+    count = 1
+    while count < n:
+        number += 1
+        if is_prime(number):
+            count += 1
+    return number
 
 # 97. Large non-Mersenne prime
 def get_last_10_digits(power = 7830457):
