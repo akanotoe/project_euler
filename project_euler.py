@@ -81,11 +81,12 @@ def get_palindrome():
                 palindrome = prod
                 factors = [num_1, num_2]
             num_2 -= 1
-        num_2 = 999
+        num_2 = 999 # resets second factor
         num_1 -= 1
     return palindrome, factors
 
 def is_palindrome(num):
+    '''Determines if a number is a palindrome (same backwards as forwards).'''
     if str(num) == str(num)[::-1]:
         return True
     return False
@@ -112,8 +113,29 @@ def get_nth_prime(n):
             count += 1
     return number
 
+# 8. Largest product in a series
+def get_largest_product(n_factors):
+    with open('8-series.txt') as file:
+        number = file.read().replace('\n', '')
+    largest_product = 1
+    for i in range(n_factors, len(number)):
+        factor_string = number[int(i-n_factors):i]
+        product = 1
+        for digit in factor_string:
+            product = product * int(digit)
+        if product > largest_product:
+            largest_product = product
+    return largest_product
+
+# 9. Special Pythagorean triplet
+def get_pythagorean_triplet():
+    a = [1]
+    pass
+
 # 97. Large non-Mersenne prime
 def get_last_10_digits(power = 7830457):
+    return 28433 * pow(2, 7830457, int(1e10)) + 1
+# Below is my first attempt which I scrapped.
     # number = 2
     # count = 1
     # while count < power:
@@ -123,4 +145,14 @@ def get_last_10_digits(power = 7830457):
     #     count += 1
     # print("power of 2: " + str(count))
     # return int(str(28433 * number + 1)[-10:])
-    return 28433 * pow(2, 7830457, int(1e10)) + 1
+
+# Alternative method:
+def largest_nonmersenne_prime(p = 7830457):
+    num = 1
+    for power in range(p):
+        num *= 2
+        num = num % int(1e10)
+    num *= 28433
+    num += 1
+    num = num % int(1e10)
+    return int(num)
