@@ -132,6 +132,23 @@ def get_pythagorean_triplet():
     a = [1]
     pass
 
+# 20. Factorial digit sum
+def get_factorial_digit_sum(n):
+    number = factorial(n)
+    number = str(number)
+    digits = []
+    for char in number:
+        digits.append(int(char))
+    return sum(digits)
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n*factorial(n-1)
+    
+get_factorial_digit_sum(100)
+
 # 25. 1000-digit Fibonacci number
 def get_1000_digit_fibo():
     # F_n \approx \phi^n/\sqrt{5}
