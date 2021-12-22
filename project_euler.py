@@ -132,6 +132,14 @@ def get_pythagorean_triplet():
     a = [1]
     pass
 
+# 25. 1000-digit Fibonacci number
+def get_1000_digit_fibo():
+    # F_n \approx \phi^n/\sqrt{5}
+    # when does floor(n\log(\phi) - 0.5\log(5)) + 1 = 1000?
+    phi = (1 + 5**0.5)/2
+    index = (999 + .5*np.log10(5))/np.log10(phi)
+    return index
+
 # 97. Large non-Mersenne prime
 def get_last_10_digits(power = 7830457):
     return 28433 * pow(2, 7830457, int(1e10)) + 1
