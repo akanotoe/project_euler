@@ -36,7 +36,7 @@ def sum_even_fibo(max_num = 4e6):
     prev_fibo = 1
     fibo = 1
     index = 2
-    sum = 0
+    fibo_sum = 0
     # Every third Fibonacci number is even, so use the index to add them
     while fibo < max_num:
         new_fibo = fibo + prev_fibo
@@ -44,8 +44,8 @@ def sum_even_fibo(max_num = 4e6):
         fibo = new_fibo
         index += 1
         if index % 3 == 0:
-            sum += fibo
-    return sum
+            fibo_sum += fibo
+    return fibo_sum
 
 # 3. Largest Prime Factor
 def get_largest_factor(num):
@@ -156,6 +156,31 @@ def get_1000_digit_fibo():
     phi = (1 + 5**0.5)/2
     index = (999 + .5*np.log10(5))/np.log10(phi)
     return index
+
+# 65. Convergents of e
+def sum_digits(num):
+    num_str = str(num)
+    digits = []
+    for digit in num_str:
+        digits.append(int(digit))
+    return sum(digits)
+
+def get_nth_convergent(n):
+    cfrac = []
+    for _ in range(n):
+        cfrac.append(1)
+    for i in range(1, n, 3):
+        cfrac[i] = 2*(i+2)//3
+    denom = cfrac[-1]
+    num = 1
+    for i in range(n-2,-1,-1):
+        new_denom = denom * cfrac[i] + num
+        num = denom
+        denom = new_denom
+    return 2*denom + num, denom
+
+sum_digits(get_nth_convergent(99)[0])
+
 
 # 97. Large non-Mersenne prime
 def get_last_10_digits(power = 7830457):
