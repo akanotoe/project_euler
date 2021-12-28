@@ -149,6 +149,29 @@ def factorial(n):
     
 get_factorial_digit_sum(100)
 
+
+# 24. Lexicographic permutations
+def get_nth_lexi_perm(n: int = int(1e6-1)):
+    # indexing starts at zero, so the millionth permutation
+    # sits at index 999999
+    import numpy as np
+    digits = [str(i) for i in range(10)]
+    left = n
+    digits_left = len(digits)
+    out_str = ""
+    for _ in range(len(digits)):
+        index = int(left//np.math.factorial(digits_left-1))
+        if len(digits) == 1:
+            out_str += digits.pop(0)
+        else:
+            out_str += digits.pop(index)
+            left -= index * np.math.factorial(digits_left-1)
+            digits_left -= 1
+    return out_str
+
+get_nth_lexi_perm()
+
+
 # 25. 1000-digit Fibonacci number
 def get_1000_digit_fibo():
     # F_n \approx \phi^n/\sqrt{5}
