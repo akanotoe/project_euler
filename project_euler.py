@@ -47,6 +47,7 @@ def sum_even_fibo(max_num = 4e6):
             fibo_sum += fibo
     return fibo_sum
 
+
 # 3. Largest Prime Factor
 def get_largest_factor(num):
     sqrt = int(num**0.5)
@@ -68,6 +69,7 @@ def is_prime(number):
         if number % n == 0:
             return False
     return True
+
 
 # 4.
 def get_palindrome():
@@ -91,9 +93,11 @@ def is_palindrome(num):
         return True
     return False
 
+
 # 5. Smallest multiple
 def get_smallest_multiple():
     return 2**4 * 3**2 * 5 * 7 * 11 * 13 * 17 * 19
+
 
 # 6. Sum square difference
 def get_sum_square_difference(num):
@@ -102,6 +106,7 @@ def get_sum_square_difference(num):
         sum_of_squares += n**2
     square_of_sum = num**2 * (num + 1)**2/4
     return square_of_sum - sum_of_squares
+
 
 # 7. 10001st prime
 def get_nth_prime(n):
@@ -112,6 +117,7 @@ def get_nth_prime(n):
         if is_prime(number):
             count += 1
     return number
+
 
 # 8. Largest product in a series
 def get_largest_product(n_factors):
@@ -127,10 +133,12 @@ def get_largest_product(n_factors):
             largest_product = product
     return largest_product
 
+
 # 9. Special Pythagorean triplet
 def get_pythagorean_triplet():
     a = [1]
     pass
+
 
 # 20. Factorial digit sum
 def get_factorial_digit_sum(n):
@@ -146,7 +154,7 @@ def factorial(n):
         return 1
     else:
         return n*factorial(n-1)
-    
+
 get_factorial_digit_sum(100)
 
 
@@ -179,6 +187,7 @@ def get_1000_digit_fibo():
     phi = (1 + 5**0.5)/2
     index = (999 + .5*np.log10(5))/np.log10(phi)
     return index
+
 
 # 65. Convergents of e
 def sum_digits(num):
