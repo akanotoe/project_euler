@@ -57,6 +57,8 @@ def get_largest_factor(num):
     return "Could not find largest prime factor."
 
 def is_prime(number):
+    # Not the most efficient method; takes
+    # a while for large lists of numbers.
     if number < 1:
         return False
     if number == int(number**0.5)**2:
@@ -71,7 +73,7 @@ def is_prime(number):
     return True
 
 
-# 4.
+# 4. Largest palindrome product
 def get_palindrome():
     num_1 = 999
     num_2 = 999
@@ -140,6 +142,15 @@ def get_pythagorean_triplet():
     pass
 
 
+# 10. Summation of primes
+def get_sum_primes(n: int=int(2e6)):
+    prime_sum = 2
+    for i in range(3, n, 2):
+        if is_prime(i):
+            prime_sum += i
+    return prime_sum
+
+
 # 20. Factorial digit sum
 def get_factorial_digit_sum(n):
     number = factorial(n)
@@ -154,8 +165,6 @@ def factorial(n):
         return 1
     else:
         return n*factorial(n-1)
-
-get_factorial_digit_sum(100)
 
 
 # 24. Lexicographic permutations
@@ -177,8 +186,6 @@ def get_nth_lexi_perm(n: int = int(1e6-1)):
             digits_left -= 1
     return out_str
 
-get_nth_lexi_perm()
-
 
 # 25. 1000-digit Fibonacci number
 def get_1000_digit_fibo():
@@ -187,6 +194,39 @@ def get_1000_digit_fibo():
     phi = (1 + 5**0.5)/2
     index = (999 + .5*np.log10(5))/np.log10(phi)
     return index
+
+
+# 26. Reciprocal Cycles
+def get_longest_reciprocal_cycle(n: int=1000):
+    from math import gcd
+    digit_length = 1
+    denoms = iter(range(2,n))
+    longest_cycle = 2
+    for denom in denoms:
+        if gcd(denom, 10) != 1:
+            continue
+        if denom < 10:
+            # digit = 10//denom
+            remain = 10 % denom
+        elif denom >= 10 & denom < 100:
+            # digit = 100//denom
+            remain = 100 % denom
+        elif denom >= 100:
+            # digit = 1000//denom
+            remain = 1000 % denom
+        remainders = []
+        test = True
+        while test:
+            # print(denom)
+            remainders.append(remain)
+            remain *= 10
+            remain = remain % denom 
+            if remain in remainders:
+                test = False
+        if len(remainders) > digit_length:
+            digit_length = len(remainders)
+            longest_cycle = denom
+    return longest_cycle, digit_length
 
 
 # 65. Convergents of e
@@ -211,7 +251,7 @@ def get_nth_convergent(n):
         denom = new_denom
     return 2*denom + num, denom
 
-sum_digits(get_nth_convergent(99)[0])
+# Run sum_digits(get_nth_convergent(99)[0]) to get answer
 
 
 # 97. Large non-Mersenne prime
